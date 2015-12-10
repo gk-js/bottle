@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>back bottle test</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button id="get" onclick="getBottle()">get Bottle</button>
+	<button id="back" onclick="backBootle()">back Bottle</button>
+	<div id="getbottle"></div>
+	<div id="postbottle"></div>
+	<script type="text/javascript">
+	 	function getBottle(){
+	 		var ajax = new XMLHttpRequest();
+	 		ajax.open("get",  "/?user=123", true);
+	 		ajax.send();
+	 		ajax.onreadystatechange=function(){
+			  if (ajax.readyState==4 && ajax.status==200)
+				    {
+				    	document.getElementById("getbottle").innerHTML=ajax.responseText;
+				    }
+			  }
+	 	}
+	 	function backBootle(){
+	 		var ajax = new XMLHttpRequest();
+	 		ajax.open("post",  "/back?owner=bottle" + Math.round(Math.random()*100) +"&type="+ (Math.random() > 0.5 ?  "male" : "female") +"&content=content"+ Math.random(), true);
+	 		ajax.send();
+	 		ajax.onreadystatechange=function(){
+			  if (ajax.readyState==4 && ajax.status==200)
+				    {
+				    	document.getElementById("postbottle").innerHTML=ajax.responseText;
+				    }
+			  }
+	 	}
+	</script>
+</body>
+</html>
